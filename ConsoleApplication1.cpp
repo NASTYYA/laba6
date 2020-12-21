@@ -159,10 +159,6 @@ void seeTable()
 	string name; int kol=0; int lenth=0; int width=0; int high=0;
 	string type; string material2; string color; string ornament;
 
-	Design *d;
-	Design obj3(color, ornament, name, kol, lenth, type, material2, width, high);
-	//Design obj3("red", "no","kk", 300, 3, "kk", "dd", 33, 45);
-	d = &obj3;
 
 	cout << "Введите информацию о столе\n ";
 	cout << "Производитель: ";
@@ -194,7 +190,10 @@ void seeTable()
 
 	cout << "Цвет стола: "; cin >> color;
 	cout << "Наличие орнамента (ДА/НЕТ): "; cin >> ornament;
-
+	Design *d;
+	Design obj3(color, ornament, name, kol, lenth, type, material2, width, high);
+	//Design obj3("red", "no","kk", 300, 3, "kk", "dd", 33, 45);
+	d = &obj3;
 	Mebel *p[2];//масси указателей
 	Table obj2(name, kol, lenth, width, high);
 	p[1] = &obj2;
