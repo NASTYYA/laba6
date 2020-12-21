@@ -17,11 +17,11 @@ public:
 		(*this).name = name;
 		(*this).kol = kol;
 	}
-	virtual void get_print(void)
+	void get_print()
 	{
-		cout << "Производитель: " <<(*this).name << " Количество: " <<(*this).kol;
+		cout <<"Производитель: " << (*this).name << " Количество: " <<(*this).kol;
+		
 	}
-	virtual void get_print2() = 0;
 };
 
 class Table : virtual public Mebel {
@@ -41,21 +41,22 @@ public:
 
 
 	}
+	string get_Table()
+	{
+		ostringstream full;
+		full << "\nПроизводитель стола: " <<(*this).name << " \nКоличество столов: " <<(*this).kol << "\nДлина стола: " <<(*this).lenth 
+			<< "\n Ширина стола: " <<(*this).width << " \nВысота стола: " <<(*this).high;
+		return full.str();
+	}
 
 	void get_print()
 	{
-
-		cout << " Производитель стола: " <<(*this).name << "\n Количество столов: " <<(*this).kol << "\n Длина стола: " <<(*this).lenth
-			<< "\n Ширина стола: " <<(*this).width << "\n Высота стола: " <<(*this).high;
-
+		Mebel::get_print();
+		cout << "\nПроизводитель стола: " <<(*this).name << "\n Количество столов: " <<(*this).kol << "\nДлина стола: " 
+			<<(*this).lenth << "\n Ширина стола: " <<(*this).width << "\n Высота стола: " <<(*this).high;
+	
 	}
-	void get_print2()
-	{
-
-		cout << " Производитель стола: " <<(*this).name << "\n Количество столов: " <<(*this).kol << "\n Длина стола: " <<(*this).lenth
-			<< "\n Ширина стола: " <<(*this).width << "\n Высота стола: " <<(*this).high;
-
-	}
+	
 };
 
 
@@ -80,19 +81,13 @@ public:
 		cout << "\n Производитель шкафа: " <<(*this).name << "\n Количество: " <<(*this).kol << "\n Тип шкафа: "
 			<<(*this).type << "\n Материал : " <<(*this).material2;
 	}
-
 	string get_bookcase()
 	{
 		ostringstream nam;
-		nam << "\n Производитель стола: " <<(*this).name << "\n Количество столов: " <<(*this).kol << "\n Тип шкафа: "
-			<<(*this).type << "\n Материал : " <<(*this).material2;
+		nam << "Производитель стола: " <<(*this).name << " Количество столов: " <<(*this).kol << " Тип шкафа: " <<(*this).type << " Материал : " <<(*this).material2;
 		return nam.str();
 	}
-	void get_print2()
-	{
-		cout << "\n Производитель шкафа: " <<(*this).name << "\n Количество: " <<(*this).kol << "\n Тип шкафа: "
-			<<(*this).type << "\n Материал : " <<(*this).material2;
-	}
+
 };
 
 class Design : public Table, public bookcase
@@ -110,16 +105,7 @@ public:Design(string color, string ornament, string name, int kol, int lenth, st
 	(*this).ornament = ornament;
 }
 
-	   void get_print(void)
-	   {
-		   cout << "\n Производитель шкафа: " <<(*this).name << "\n Тип шкафа: "
-			   <<(*this).type << "\n Материал : " <<(*this).material2;
-	   }
-	   void get_print2()
-	   {
-		   cout << "\n Производитель шкафа: " <<(*this).name << "\n Тип шкафа: "
-			   <<(*this).type << "\n Материал : " <<(*this).material2;
-	   }
+	
 	   void design_prnt()
 	   {
 
@@ -201,6 +187,10 @@ void seeTable()
 	cout << "Столы ";
 	p[1]->get_print();
 	d->design_prnt();
+	Table* stud = new Table(name, kol, lenth, width, high);
+
+
+	cout <<(*stud).get_Table() << endl;
 
 }
 
@@ -210,7 +200,7 @@ int main() {
 	int input;
 
 	do {
-		cout << "1. Стол\n";
+		cout << "\n1. Стол\n";
 		cout << "2. Шкаф\n";
 		cout << "3. Exit\n";
 		cout << "Ваш ответ: ";
